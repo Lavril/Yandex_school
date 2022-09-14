@@ -1,1 +1,26 @@
-
+A = input()
+B = input()
+use_ind = list()
+N = len(A)
+new_word = list()
+for i in range(N):
+    if A[i] == B[i]:
+        new_word.append("P")
+        use_ind.append(i)
+    elif B[i] in A:
+        count_ind = A.count(B[i])
+        ind_N = 0
+        for j in range(count_ind):
+            ind = A.index(B[i], ind_N)
+            if ind not in use_ind and A[ind] != B[ind]:
+                new_word.append("S")
+                use_ind.append(ind)
+                break
+            else:
+                ind_N = ind+1
+        else:
+            new_word.append("I")
+    else:
+        new_word.append("I")
+end = "".join(new_word)
+print(end)
